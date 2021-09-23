@@ -1,5 +1,6 @@
 ## database
-数据库方面，如：MySQL、Redis等
+数据库方面; 
+如：MySQL、Redis等
 
 ## 命名空间
 `执行database-namespace.yaml文件`
