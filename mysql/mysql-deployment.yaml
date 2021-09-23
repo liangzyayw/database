@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: database
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: mysql
+          containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "anyrtc"
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-data
+        - name: config
+          mountPath: /etc/mysql/mysql.conf.d
+      volumes:
+      - name: config
+        configMap:
+          name: mysql-config
+      - name: mysql-data
+        persistentVolumeClaim:
+          claimName: mysql
