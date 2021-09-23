@@ -36,7 +36,7 @@ kubectl create -f  redis-config.yaml
 
 ## deployment服务部署
 kubectl create -f  redis-deployment.yaml
-
+```
 
 ## 查看执行结果
 `查看pod`
